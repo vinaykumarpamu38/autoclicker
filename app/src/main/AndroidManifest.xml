@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.techy_pvk.automate">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!--
+         For the Set Ringer Mode step's Silent option specifically - Normal and Vibrate need
+         no special permission, but Silent is gated behind Do Not Disturb access.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+
+    <!--
+         For the Set Brightness step - like Overlay/Accessibility, this is a special
+         permission the user grants via a dedicated system settings screen, not a normal
+         runtime permission dialog.
+    -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--
+ For the "Bluetooth headset connects" trigger: reading a connected device's name/class.
+         BLUETOOTH/BLUETOOTH_ADMIN cover this on API 30 and below (normal permissions, granted
+         automatically); BLUETOOTH_CONNECT is the API 31+ runtime replacement.
+    -->
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <!--
+ For the Location trigger (geofencing) and for reading the real connected SSID for
+         the Wi-Fi trigger (both are gated behind location access on modern Android).
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- For the Wi-Fi trigger. -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--
+ For the Scheduled Time trigger - denied by default on Android 14+, requested via
+         Settings (ACTION_REQUEST_SCHEDULE_EXACT_ALARM); falls back to an inexact alarm if
+         not granted.
+    -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!--
+ For the Boot Completed trigger, and to re-register geofences/alarms after a reboot
+         clears them.
+    -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!--
+ Lets the "Open an app" step list installed launchable apps without the much
+         broader (and Play-Store-restricted) QUERY_ALL_PACKAGES permission.
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Autoclicker">
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.SequenceBuilderActivity"
+            android:exported="false"
+            android:label="@string/build_sequence_title"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".ui.NotificationLogActivity"
+            android:exported="false"
+            android:label="@string/notification_log_title" />
+        <activity
+            android:name=".ui.InspectorResultActivity"
+            android:exported="false"
+            android:label="@string/inspector_title"
+            android:launchMode="singleTop" />
+        <!--
+ No visible UI (translucent theme) - launched by an app shortcut, or potentially a
+             Samsung Modes and Routines "Other apps" action, to run one specific sequence
+             directly. exported="true" because the launcher/Routines app (not this app) is
+             what actually starts it.
+        -->
+        <activity
+            android:name=".ui.RunSequenceShortcutActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:theme="@style/Theme.AutoMate.Transparent" />
+        <!--
+ Handles opening a shared sequence file (see SequenceShareHelper). Two filters:
+             one matching our custom MIME type exactly (used when we set it ourselves via
+             ACTION_SEND), and a fallback matching the file extension for cases like Drive/a
+             file manager presenting the file with a generic type. No other app declares
+             either of these, so opening a shared file only offers AutoMate.
+        -->
+        <activity
+            android:name=".ui.ImportSequenceActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:theme="@style/Theme.AutoMate.Transparent">
+
+            <!-- Matches when WE set the MIME type ourselves (sharing via SequenceShareHelper). -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="application/vnd.automate.sequence" />
+            </intent-filter>
+            <!--
+                 Matches opening a .automateseq file directly from a file manager, where the
+                 file:// URI's path reliably reflects the real filename.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="*"
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\\.automateseq"
+                    android:scheme="file" />
+            </intent-filter>
+            <!--
+                 Matches sharing through apps like WhatsApp/Drive, which route files through
+                 their own content provider and generalize the type to octet-stream - their
+                 content:// URIs don't expose a real filename, so pathPattern can't help here.
+                 Deliberately scoped to octet-stream (not "*/*") to avoid matching every typed
+                 file share; ImportSequenceActivity itself now validates the content and shows
+                 a clean error for anything that isn't actually a sequence, instead of crashing.
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:mimeType="application/octet-stream"
+                    android:scheme="content" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings_title" />
+        <activity
+            android:name=".ui.AccessibilityDisclosureActivity"
+            android:exported="false"
+            android:label="Accessibility Permission" />
+        <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false"
+            android:label="@string/profile_title" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service
+            android:name=".service.FloatingPickerService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".service.PaymentGuardOverlayService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name=".service.AutomationService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config" />
+        </service>
+        <!--
+ Notification access: a special grant (separate from Accessibility) the user turns
+             on under Settings > Notification access, needed for the "notification received" trigger.
+        -->
+        <service
+            android:name=".service.NotificationTriggerService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+        <!--
+ Manifest-declared (not runtime-registered) so it still fires when this app's
+             process isn't running - see BluetoothTriggerReceiver's class doc for why this
+             particular action is exempt from Android's background-broadcast limits.
+        -->
+        <receiver
+            android:name=".receiver.BluetoothTriggerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
+            </intent-filter>
+        </receiver>
+        <!--
+ Only ever targeted by explicit PendingIntents we create ourselves (from AlarmManager
+             and from a notification's delete intent) - never an implicit system broadcast, so
+             this is safe to leave unexported.
+        -->
+        <receiver
+            android:name=".receiver.PaymentReminderReceiver"
+            android:exported="false" />
+        <!--
+ Receives geofence transition events from the Play Services Geofencing API for
+             the Location trigger. Targeted by an explicit PendingIntent, not an implicit
+             broadcast, so it isn't subject to the background-broadcast limits at all.
+        -->
+        <receiver
+            android:name=".receiver.GeofenceBroadcastReceiver"
+            android:exported="true" />
+        <!--
+ Fires any Boot Completed-triggered sequences, and re-registers geofences and
+             reschedules alarms, both of which the system clears on every reboot.
+        -->
+        <receiver
+            android:name=".receiver.BootCompletedReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!--
+ Fires one Scheduled Time trigger, via an explicit PendingIntent set by
+             AlarmScheduler - not an implicit broadcast, so no manifest exemption is needed.
+        -->
+        <receiver
+            android:name=".receiver.ScheduledTriggerReceiver"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.LocationDisclosureActivity"
+            android:exported="false"
+            android:label="@string/location_disclosure_title" />
+    </application>
+
+</manifest>

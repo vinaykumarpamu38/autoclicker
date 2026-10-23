@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <group
+        android:pivotX="12"
+        android:pivotY="12"
+        android:rotation="45">
+        <path
+            android:fillColor="@color/automate_deep_navy"
+            android:pathData="M10,5 L14,5 L14,19 L10,19 Z" />
+        <path
+            android:fillColor="@color/automate_deep_navy"
+            android:pathData="M10,5 L14,5 L12,1 Z" />
+    </group>
+</vector>

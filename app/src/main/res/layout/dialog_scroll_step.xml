@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Which way should the screen scroll?" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_scroll_direction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_scroll_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Down (reveal content below)" />
+
+        <RadioButton
+            android:id="@+id/radio_scroll_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Up (reveal content above)" />
+
+        <RadioButton
+            android:id="@+id/radio_scroll_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Left" />
+
+        <RadioButton
+            android:id="@+id/radio_scroll_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Right" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Swipe duration (ms)" />
+
+    <EditText
+        android:id="@+id/input_scroll_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 300"
+        android:inputType="number" />
+
+</LinearLayout>

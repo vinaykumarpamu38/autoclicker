@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_click_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Value to match" />
+
+    <EditText
+        android:id="@+id/input_match_value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="How long to wait for it to appear (ms)" />
+
+    <EditText
+        android:id="@+id/input_match_timeout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 3000"
+        android:inputType="number" />
+
+</LinearLayout>

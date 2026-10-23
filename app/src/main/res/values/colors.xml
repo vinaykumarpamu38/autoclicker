@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand palette - stays constant across light/dark (used for chrome: Toolbar, drawer
+         header, the Run button, FAB - elements meant to look the same, "branded", in both
+         modes rather than adapting). -->
+    <color name="automate_deep_navy">#113F80</color>
+    <color name="automate_mid_blue">#94C2FF</color>
+
+    <!-- Everything below adapts per mode - see values-night/colors.xml for the dark values. -->
+    <color name="automate_pale_blue">#E5F1FF</color>
+    <color name="automate_surface">#F7FAFF</color>
+    <color name="automate_card_background">#FFFFFF</color>
+    <color name="automate_text_primary">#1A1D23</color>
+    <color name="automate_text_secondary">#66707E</color>
+    <color name="automate_divider">#E2E8F0</color>
+    <color name="automate_delete">#C62828</color>
+    <color name="automate_delete_background">#FCE8E6</color>
+    <color name="automate_save_green">#388E3C</color>
+    <color name="automate_depth_purple">#9C27B0</color>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Which app do you want to inspect?" />
+
+    <Spinner
+        android:id="@+id/spinner_inspect_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="How do you want to inspect it?" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_inspect_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_inspect_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Tap the exact element (recommended)" />
+
+        <RadioButton
+            android:id="@+id/radio_inspect_whole_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show everything on screen" />
+    </RadioGroup>
+
+</LinearLayout>
