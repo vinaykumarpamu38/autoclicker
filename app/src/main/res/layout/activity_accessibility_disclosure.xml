@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/automate_surface"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Accessibility Permission"
+            android:textColor="@color/automate_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="AutoMate is an automation tool, not an accessibility tool for users with disabilities. It uses Android's Accessibility Service for two specific features, and only ever acts on sequences you build yourself:"
+            android:textColor="@color/automate_text_primary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="\u2022 Performing taps, swipes, and typed text that you recorded, when a condition you configured occurs (e.g. connecting to Wi-Fi, a scheduled time, or a notification arriving).\n\n\u2022 Reading on-screen elements (by their visible text, resource ID, or content description) so a \u201cClick by Text/ID/Description\u201d step can still find its target if a button moves slightly."
+            android:textColor="@color/automate_text_primary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="What else it reads: when you run Inspect Screen yourself, AutoMate lists the visible text, IDs and descriptions on the current screen so you can use them in a step; that list is kept on this device until you run another inspection. If you turn on Payment App Guard, AutoMate notices which app has come to the front (the app's name only, not what is inside it) so it can warn you before a payment app opens.
+
+What this does NOT do: AutoMate never acts unless you built and enabled a sequence yourself, and nothing it sees on your screen ever leaves this device. It doesn't disable or uninstall other apps, doesn't work around Android's privacy controls or notifications, and is never used to record call audio."
+            android:textColor="@color/automate_text_secondary"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tapping Allow opens Android's Accessibility Settings, where you'll need to find AutoMate and turn it on yourself - this screen does not grant anything on its own."
+            android:textColor="@color/automate_text_secondary"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_disclosure_deny"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="Don't Allow" />
+
+            <Button
+                android:id="@+id/btn_disclosure_allow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/automate_deep_navy"
+                android:text="Allow"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

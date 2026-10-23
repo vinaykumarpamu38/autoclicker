@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingVertical="10dp">
+
+    <TextView
+        android:id="@+id/text_element_depth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/automate_depth_purple"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/text_element_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/automate_text_secondary"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/text_element_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_element_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/text_element_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textSize="13sp" />
+
+</LinearLayout>

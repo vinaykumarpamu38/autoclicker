@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">AutoMate - Task Automation</string>
+    <string name="home_title">Your Daily Tasks</string>
+    <string name="accessibility_desc">Required to perform the taps, swipes, and screen-reading (matching by text, resource ID, or content description, and typing into fields) used by your saved sequences.</string>
+    <string name="build_sequence_title">Build Sequence</string>
+    <string name="notification_log_title">Notification Log</string>
+    <string name="inspector_title">Inspect Screen</string>
+
+
+    <string name="settings_title">Settings</string>
+    <string name="profile_title">Profile</string>
+    <string name="drawer_open">Open navigation menu</string>
+    <string name="drawer_close">Close navigation menu</string>
+
+    <!-- ===== Location: prominent disclosure (shown BEFORE any location permission request) ===== -->
+    <string name="location_disclosure_title">Location access</string>
+    <string name="location_disclosure_intro">AutoMate uses your device\u2019s location for two features that you set up yourself:</string>
+    <string name="location_disclosure_features">\u2022 Arrive at / leave a place: runs a sequence when you enter or leave an address you choose. AutoMate sets up a circular geofence around that place with Google Play services, which watches your device\u2019s location to notice when you cross it.\n\n\u2022 Wi-Fi network name: Android only tells an app which Wi-Fi network you are on if the app has location access. AutoMate uses the name to run a sequence when you join a network you picked.</string>
+    <string name="location_disclosure_background">Background location: for \u201cArrive at / leave a place\u201d to work, AutoMate collects your location even when the app is closed or not in use. After you tap Allow, you will be asked to choose \u201cAllow all the time\u201d.</string>
+    <string name="location_disclosure_data">How your location is used: only to detect those arrive / leave / Wi-Fi events. AutoMate does not keep a history of where you have been, does not send your location to its developer or to any other third party, and never uses it for advertising or analytics. Google Play services processes location for geofencing under Google\u2019s own privacy policy. The place you choose is saved only inside your sequence, on this device. If you use \u201cLook Up\u201d on an address, the address you typed is sent to Android\u2019s geocoding service to find its coordinates.</string>
+    <string name="location_disclosure_next_step">Tapping Allow opens Android\u2019s own permission dialog, where you decide. Tapping Don\u2019t Allow changes nothing. You can turn location off at any time in Settings \u2192 Apps \u2192 AutoMate \u2192 Permissions.</string>
+    <string name="location_disclosure_allow">Allow</string>
+    <string name="location_disclosure_deny">Don\u2019t Allow</string>
+    <string name="location_background_explain_title">Allow location all the time?</string>
+    <string name="location_background_explain_message">To notice when you arrive at or leave a place while AutoMate is closed, Android needs \u201cAllow all the time\u201d. On the next screen, choose that option. AutoMate only uses it for the location triggers you created.</string>
+    <string name="location_background_explain_continue">Continue</string>
+    <string name="location_background_explain_skip">Not now</string>
+</resources>

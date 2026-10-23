@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text to type" />
+
+    <EditText
+        android:id="@+id/input_type_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="If this sequence has a notification trigger, you can use {notification_title}, {notification_text}, or {notification_app} here - they'll be filled in with the notification that started this run."
+        android:textColor="@color/automate_text_secondary"
+        android:textSize="11sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Optional: resource ID or exact text of the field to type into (leave blank to use whatever field is currently focused)" />
+
+    <EditText
+        android:id="@+id/input_type_target"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. edit_username (optional)"
+        android:inputType="text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="How long to wait for that field to appear (ms)" />
+
+    <EditText
+        android:id="@+id/input_type_timeout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. 3000"
+        android:inputType="number" />
+
+</LinearLayout>

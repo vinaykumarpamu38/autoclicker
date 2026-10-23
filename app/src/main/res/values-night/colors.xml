@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand palette intentionally NOT overridden here - automate_deep_navy and
+         automate_mid_blue stay the same in both modes (see values/colors.xml's comment). -->
+
+    <!-- A muted dark blue "container" tone - the dark-mode equivalent of the near-white
+         automate_pale_blue chip/circle background. Using the light value here would put a
+         bright near-white patch on every reorder/edit/share button against a dark card. -->
+    <color name="automate_pale_blue">#22344E</color>
+
+    <!-- Material3 dark surfaces should avoid true black (poor perceived depth, and doesn't
+         match the app's navy identity) - this is a dark, slightly blue-tinted near-black. -->
+    <color name="automate_surface">#10141B</color>
+    <color name="automate_card_background">#1B222D</color>
+
+    <color name="automate_text_primary">#ECEFF3</color>
+    <color name="automate_text_secondary">#9AA5B4</color>
+    <color name="automate_divider">#2A323D</color>
+
+    <!-- Slightly brighter than the light-mode reds/green/purple for contrast against dark
+         backgrounds (standard Material dark-theme practice). -->
+    <color name="automate_delete">#EF5350</color>
+    <color name="automate_delete_background">#3B2222</color>
+    <color name="automate_save_green">#66BB6A</color>
+    <color name="automate_depth_purple">#CE93D8</color>
+</resources>

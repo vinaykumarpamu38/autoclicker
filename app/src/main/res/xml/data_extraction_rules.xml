@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Android 12+ cloud backup and device-to-device transfer. Same exclusions as backup_rules.xml
+   (which covers Android 6-11): sensitive content and per-device transient state stay out.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Contains the text of the user's notifications. Must never leave the device via backup. -->
+        <exclude domain="sharedpref" path="AutoClickerNotificationLog.xml" />
+        <!-- Contains text/IDs read off other apps' screens by Inspect Screen. -->
+        <exclude domain="sharedpref" path="AutoClickerInspector.xml" />
+        <!-- Transient state that is wrong on another device or after a restore. -->
+        <exclude domain="sharedpref" path="AutoClickerDraft.xml" />
+        <exclude domain="sharedpref" path="AutoClickerPicker.xml" />
+        <!-- "What the ringer was before the auto-restore sequence ran" - restoring it could apply a stale value. -->
+        <exclude domain="sharedpref" path="AutoMateRestoreState.xml" />
+        <!-- Includes the "waiting for you to re-enable Accessibility" reminder state. -->
+        <exclude domain="sharedpref" path="AutoMatePaymentGuard.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <!-- Contains the text of the user's notifications. Must never leave the device via backup. -->
+        <exclude domain="sharedpref" path="AutoClickerNotificationLog.xml" />
+        <!-- Contains text/IDs read off other apps' screens by Inspect Screen. -->
+        <exclude domain="sharedpref" path="AutoClickerInspector.xml" />
+        <!-- Transient state that is wrong on another device or after a restore. -->
+        <exclude domain="sharedpref" path="AutoClickerDraft.xml" />
+        <exclude domain="sharedpref" path="AutoClickerPicker.xml" />
+        <!-- "What the ringer was before the auto-restore sequence ran" - restoring it could apply a stale value. -->
+        <exclude domain="sharedpref" path="AutoMateRestoreState.xml" />
+        <!-- Includes the "waiting for you to re-enable Accessibility" reminder state. -->
+        <exclude domain="sharedpref" path="AutoMatePaymentGuard.xml" />
+    </device-transfer>
+</data-extraction-rules>

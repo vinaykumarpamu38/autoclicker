@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Dark theme. Same color RESOURCE names as the light theme - only the values differ
+         (see values-night/colors.xml) - so this mirrors values/themes.xml's structure exactly
+         rather than needing its own separate set of theme attributes. -->
+    <style name="Base.Theme.Autoclicker" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/automate_deep_navy</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/automate_mid_blue</item>
+        <item name="colorOnPrimaryContainer">@color/automate_deep_navy</item>
+        <item name="colorSecondaryContainer">@color/automate_pale_blue</item>
+        <item name="colorSurface">@color/automate_surface</item>
+        <item name="colorOnSurface">@color/automate_text_primary</item>
+        <item name="colorOnSurfaceVariant">@color/automate_text_secondary</item>
+        <item name="colorOutline">@color/automate_divider</item>
+        <item name="android:statusBarColor">@color/automate_deep_navy</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@color/automate_surface</item>
+        <item name="android:textColorPrimary">@color/automate_text_primary</item>
+        <item name="android:textColorSecondary">@color/automate_text_secondary</item>
+    </style>
+
+    <!-- For no-UI "trampoline" activities that stay invisible but may still create AppCompat UI
+         (like an AlertDialog) - must descend from Theme.AppCompat or AppCompat's own dialog code
+         throws IllegalStateException. -->
+    <style name="Theme.AutoMate.Transparent" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>

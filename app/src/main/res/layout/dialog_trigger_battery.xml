@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RadioGroup
+        android:id="@+id/radio_group_battery_condition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_battery_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Battery level drops to (or below)" />
+
+        <RadioButton
+            android:id="@+id/radio_battery_charging_started"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Charging starts" />
+
+        <RadioButton
+            android:id="@+id/radio_battery_charging_stopped"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Charging stops" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/section_battery_level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Percent" />
+
+        <EditText
+            android:id="@+id/input_battery_percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="e.g. 20"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/section_battery_auto_restore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <CheckBox
+            android:id="@+id/checkbox_battery_auto_restore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Auto-restore when charging stops" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Whatever this sequence's Set Ringer Mode step changed gets set back automatically once you unplug."
+            android:textColor="@color/automate_text_secondary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>

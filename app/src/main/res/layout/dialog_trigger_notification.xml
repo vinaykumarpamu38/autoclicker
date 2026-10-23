@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Only from this app" />
+
+    <Spinner
+        android:id="@+id/spinner_trigger_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Optional: only if the title or text contains" />
+
+    <EditText
+        android:id="@+id/input_notification_text_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="e.g. OTP, verification code (blank = any content)"
+        android:inputType="text" />
+
+    <CheckBox
+        android:id="@+id/checkbox_store_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Also save each matching notification to the Notification Log" />
+
+</LinearLayout>

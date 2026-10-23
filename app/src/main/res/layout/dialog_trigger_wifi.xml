@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Network name (SSID) - optional, blank matches any Wi-Fi network" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/input_wifi_ssid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="e.g. Home-WiFi"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/button_use_current_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Current" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="\u201cUse Current\u201d needs location access granted (Wi-Fi names are only readable with it) and to actually be connected to the network right now."
+        android:textColor="@color/automate_text_secondary"
+        android:textSize="11sp" />
+
+</LinearLayout>
